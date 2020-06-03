@@ -70,7 +70,7 @@ export default StyleSheet.create({
   },
   overlayRectangle: {
     position: 'absolute',
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     left: 0,
     top: 0,
     bottom: 0,
