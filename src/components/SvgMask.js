@@ -115,7 +115,7 @@ class SvgMask extends Component<Props, State> {
                   ref={(ref) => { this.mask = ref; }}
                   fill={this.props.backdropColor}
                   fillRule="evenodd"
-                  strokeWidth={1}
+                  strokeWidth={0}
                   d={this.props.svgMaskPath({
                     size: this.state.size,
                     position: this.state.position,
