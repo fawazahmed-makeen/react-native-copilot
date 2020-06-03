@@ -5,7 +5,7 @@ export const STEP_NUMBER_RADIUS: number = 14;
 export const STEP_NUMBER_DIAMETER: number = STEP_NUMBER_RADIUS * 2;
 export const ZINDEX: number = 100;
 export const MARGIN: number = 13;
-export const OFFSET_WIDTH: number = 4;
+export const OFFSET_WIDTH: number = 0;
 export const ARROW_SIZE: number = 6;
 
 export default StyleSheet.create({
