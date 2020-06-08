@@ -22,6 +22,7 @@ class CopilotStep extends Component<Props> {
   }
 
   render() {
+    if (!this.context?._copilot?.getCurrentStep) return null;
     const currentStep = this.context._copilot.getCurrentStep();
 
     return createElement(
