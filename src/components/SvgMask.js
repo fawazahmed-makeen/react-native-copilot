@@ -114,8 +114,6 @@ class SvgMask extends Component<Props, State> {
                 <AnimatedSvgPath
                   ref={(ref) => { this.mask = ref; }}
                   fill={this.props.backdropColor}
-                  stroke={this.props.backdropColor}
-                  color={this.props.backdropColor}
                   fillRule="evenodd"
                   strokeWidth={0}
                   d={this.props.svgMaskPath({
