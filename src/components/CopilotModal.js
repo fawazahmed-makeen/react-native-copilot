@@ -188,8 +188,8 @@ class CopilotModal extends Component<Props, State> {
         y: obj.height,
       },
       position: {
-        x: Math.floor(Math.max(obj.left, 0)),
-        y: Math.floor(Math.max(obj.top, 0)),
+        x: obj.left,
+        y: obj.top,
       },
     });
   }
