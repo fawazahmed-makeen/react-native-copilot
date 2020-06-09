@@ -118,12 +118,23 @@ const copilot = ({
       isLastStep = (): boolean => this.state.currentStep === this.getLastStep();
 
       registerStep = (step: Step): void => {
-        this.setState(({ steps }) => ({
-          steps: {
-            ...steps,
-            [step.name]: step,
-          },
-        }));
+        const newSteps = {
+          ...this.state.steps,
+          [step.name]: step,
+        };
+
+        // sort by order
+        const names = Object.keys(newSteps);
+        const values = names.map(n => newSteps[n]);
+        const sortedValues = values.sort(function(a, b){return a.order - b.order});
+        const sortedSteps = {};
+        sortedValues.forEach(v => {
+          sortedSteps[v.name] = v;
+        });
+
+        this.setState({ steps: sortedSteps }, () =>
+          this.eventEmitter.emit('registered', step)
+        );
       }
 
       unregisterStep = (stepName: string): void => {
