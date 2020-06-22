@@ -51,6 +51,7 @@ const copilot = ({
         currentStep: null,
         visible: false,
         scrollView: null,
+        reset: false,
       };
 
       getChildContext(): { _copilot: CopilotContext } {
@@ -179,15 +180,21 @@ const copilot = ({
           this.eventEmitter.emit('start');
           await this.setCurrentStep(currentStep);
           await this.moveToCurrentStep();
+          console.log("setVisibility 1")
           await this.setVisibility(true);
           this.startTries = 0;
         }
       }
 
       stop = async (): void => {
+        console.log("setVisibility 2")
         await this.setVisibility(false);
         this.eventEmitter.emit('stop');
       }
+
+      resetWalkthrough = () => {
+
+      };
 
       async moveToCurrentStep(): void {
         const size = await this.state.currentStep.target.measure();
@@ -201,11 +208,28 @@ const copilot = ({
       }
 
       render() {
+        if (this.state.reset) {
+          return (
+            <WrappedComponent
+              {...this.props}
+              start={this.start}
+              stop={this.stop}
+              unregisterStep={this.unregisterStep}
+              resetWalkthrough={this.resetWalkthrough}
+              currentStep={this.state.currentStep}
+              visible={this.state.visible}
+              copilotEvents={this.eventEmitter}
+            />
+          );
+        }
         return (
           <View style={wrapperStyle || { flex: 1 }}>
             <WrappedComponent
               {...this.props}
               start={this.start}
+              stop={this.stop}
+              unregisterStep={this.unregisterStep}
+              resetWalkthrough={this.resetWalkthrough}
               currentStep={this.state.currentStep}
               visible={this.state.visible}
               copilotEvents={this.eventEmitter}
